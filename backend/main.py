@@ -49,7 +49,7 @@ async def rebuild_database(file: UploadFile = File(...), db: Session = Depends(d
             normalized_category_key = normalized_category_key.replace(" ", "_").replace("-", "_").upper()
             if normalized_category_key not in category_map:
                 category = models.Category(
-                    category=schemas.CategoryEnum[normalized_category_key],
+                    category=category_key,
                     created_at=datetime.utcnow(),
                     updated_at=datetime.utcnow()
                 )
@@ -64,7 +64,7 @@ async def rebuild_database(file: UploadFile = File(...), db: Session = Depends(d
             subcat_key = (normalized_category_key, normalized_subcategory_key)
             if subcat_key not in subcategory_map:
                 subcategory = models.SubCategory(
-                    subcategory=schemas.SubCategoryEnum[normalized_subcategory_key],
+                    subcategory=subcategory_key,
                     category_id=category.id,
                     created_at=datetime.utcnow(),
                     updated_at=datetime.utcnow()
@@ -94,3 +94,21 @@ async def rebuild_database(file: UploadFile = File(...), db: Session = Depends(d
         raise HTTPException(status_code=500, detail=str(e))
     
 
+@app.get("/categories", response_model=List[schemas.Category])
+async def get_categories(db: Session = Depends(database.get_db)):
+    categories = db.query(models.Category).options(
+        joinedload(models.Category.subcategories).joinedload(models.SubCategory.assets)
+    ).all()
+    return categories
+
+@app.get("/subcategories")
+async def get_subcategories(db: Session = Depends(database.get_db)):
+    subcategories = db.query(models.SubCategory).options(
+        joinedload(models.SubCategory.assets)
+    ).all()
+    return subcategories
+
+@app.get("/assets")
+async def get_assets(db: Session = Depends(database.get_db)):
+    assets = db.query(models.Asset).all()
+    return assets

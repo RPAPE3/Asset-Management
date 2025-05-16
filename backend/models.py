@@ -8,7 +8,7 @@ class Category(Base):
     __tablename__ = "categories"
 
     id = Column(Integer, primary_key=True, index=True)
-    category = Column(Enum(schemas.CategoryEnum))
+    category = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -18,7 +18,7 @@ class SubCategory(Base):
     __tablename__ = "subcategories"
 
     id = Column(Integer, primary_key=True, index=True)
-    subcategory = Column(Enum(schemas.SubCategoryEnum))
+    subcategory = Column(String)
     category_id = Column(Integer, ForeignKey("categories.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

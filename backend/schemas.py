@@ -1,28 +1,7 @@
 from pydantic import BaseModel, field_validator
 from typing import List
-from enum import Enum
 from datetime import datetime
 import re
-
-class CategoryEnum(str, Enum):
-    """
-    Enum for the categories of the assets.
-    """
-    CASH = "CASH"
-    INVESTMENT = "INVESTMENT"
-    OTHER_PROPERTY = "OTHER_PROPERTY"
-    REAL_ESTATE = "REAL_ESTATE"
-
-class SubCategoryEnum(str, Enum):
-    """
-    Enum for the subcategories of the categories.
-    """
-    CASH = "CASH"
-    CRYPTOCURRENCY = "CRYPTOCURRENCY"
-    BROKERAGE = "BROKERAGE"
-    VEHICLE = "VEHICLE"
-    REAL_ESTATE = "REAL_ESTATE"
-
 
 class AssetBase(BaseModel):
     """
@@ -49,16 +28,8 @@ class SubCategoryBase(BaseModel):
     """
     Schema for the subcategories of the categories.
     """
-    subcategory: SubCategoryEnum
+    subcategory: str
     assets: List[AssetCreate]
-
-    @field_validator('subcategory', mode='before')
-    @classmethod
-    def case_insensitive_subcategory(cls, v):
-        if isinstance(v, str):
-            v = re.sub(r'(?<!^)(?=[A-Z])', '_', v)
-            v = v.replace(" ", "_").replace("-", "_").upper()
-        return v
 
 class SubCategoryCreate(SubCategoryBase):
     pass
@@ -75,16 +46,8 @@ class CategoryBase(BaseModel):
     """
     Schema for the categories of the assets.
     """
-    category: CategoryEnum
+    category: str
     subcategories: List[SubCategoryCreate]
-
-    @field_validator('category', mode='before')
-    @classmethod
-    def case_insensitive_category(cls, v):
-        if isinstance(v, str):
-            v = re.sub(r'(?<!^)(?=[A-Z])', '_', v)
-            v = v.replace(" ", "_").replace("-", "_").upper()
-        return v
 
 class CategoryCreate(CategoryBase):
     pass
