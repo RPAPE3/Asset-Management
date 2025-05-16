@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import FileUpload from "./components/file-upload"
-// import AssetList from "./components/asset-list"
+import AssetList from "./components/asset-list"
 import type { Category } from "./types/types"
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
     if (!response.ok) {
       throw new Error('Failed to upload data to backend');
     }
-    // Re-fetch categories after successful upload
+
     await fetchCategories();
   }
 
@@ -56,8 +56,7 @@ export default function Home() {
         </div>
 
         {categories.length > 0 ? (
-          <div></div>
-          // <AssetList categories={categories} />
+          <AssetList categories={categories} />
         ) : (
           <div className="text-center p-10 bg-white rounded-lg shadow">
             <p className="text-gray-500">No assets found. Please upload a JSON file to get started.</p>

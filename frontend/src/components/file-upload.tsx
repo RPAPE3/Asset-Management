@@ -31,7 +31,6 @@ export default function FileUpload({ onDataUpload }: FileUploadProps) {
       try {
         const jsonData = JSON.parse(e.target?.result as string)
 
-        // No strict structure validation, just pass the data to backend
         try {
           await onDataUpload(jsonData)
           setSuccess(true)
@@ -40,7 +39,6 @@ export default function FileUpload({ onDataUpload }: FileUploadProps) {
           return
         }
 
-        // Reset the file input
         event.target.value = ""
       } catch (err) {
         setError("Error parsing JSON file")
