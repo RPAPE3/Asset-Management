@@ -1,54 +1,62 @@
-# React + TypeScript + Vite
+# Asset Management Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the Asset Management application. It is built with React and Vite, providing a user-friendly interface for uploading and managing asset data.
 
-Currently, two official plugins are available:
+## Features
+- Upload asset data via JSON file
+- Simple and modern UI
+- Integration with backend for data validation and storage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js (v16 or higher recommended)
+- npm (v8 or higher recommended)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
+1. Navigate to the `frontend` directory:
+   ```sh
+   cd frontend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Running the Development Server
+Start the app in development mode:
+```sh
+npm run dev
+```
+The app will be available at the URL shown in your terminal (typically http://localhost:5173).
+
+### Building for Production
+To build the app for production:
+```sh
+npm run build
+```
+The output will be in the `dist` folder.
+
+### Previewing the Production Build
+To preview the production build locally:
+```sh
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## File Upload Feature
+- Click the "Upload Asset Data" section to select a JSON file containing your asset data.
+- The file is sent to the backend for validation and processing.
+- Only basic file type and JSON parsing checks are performed on the frontend; all structure validation is handled by the backend.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
+- `src/components/` - React components
+- `src/` - Main source code
+- `public/` - Static assets
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+## License
+This project is for internal use. Please contact the maintainer for licensing information.
