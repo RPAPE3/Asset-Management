@@ -53,6 +53,9 @@ The API will be available at `http://localhost:8000` by default.
 ### POST `/rebuild-database`
 Upload a JSON file to rebuild the database. The JSON should be an array of asset objects with fields like `primaryAssetCategory`, `wealthAssetType`, `nickname`, and `balanceCurrent`.
 
+### Test Upload File
+A sample file named `assets_test_upload.json` is provided in the project root. You can use this file to test the `/rebuild-database` endpoint. Feel free to change values in the file to verify the backend processes uploads correctly.
+
 ### GET `/categories`
 Returns all categories, each with nested subcategories and assets.
 

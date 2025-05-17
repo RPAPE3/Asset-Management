@@ -47,6 +47,7 @@ npm run preview
 - Click the "Upload Asset Data" section to select a JSON file containing your asset data.
 - The file is sent to the backend for validation and processing.
 - Only basic file type and JSON parsing checks are performed on the frontend; all structure validation is handled by the backend.
+- **Test File:** A sample file named `assets_test_upload.json` is provided in the project root. You can use this file to test uploads. Feel free to change values in the file to verify the application works as expected.
 
 ## Project Structure
 - `src/components/` - React components

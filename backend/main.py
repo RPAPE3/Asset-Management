@@ -14,7 +14,7 @@ app = FastAPI()
 
 models.Base.metadata.create_all(bind=database.engine)
 
-origins = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
+origins = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173").split(",")
 
 app.add_middleware(
     CORSMiddleware,

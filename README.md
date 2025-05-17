@@ -86,6 +86,7 @@ The app will be available at [http://localhost:5173](http://localhost:5173).
 - Use the UI to upload a JSON file containing asset data.
 - The backend will process the file and update the database.
 - View and manage assets via the frontend interface.
+- **Test File:** A sample file named `assets_test_upload.json` is provided in the project root. You can use this file to test uploads. Feel free to change values in the file to verify the application works as expected.
 
 ---
 
